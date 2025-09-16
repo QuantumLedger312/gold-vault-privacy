@@ -1,75 +1,88 @@
-# Aurum Trade - FHE-Encrypted Gold Trading Platform
+# Gold Vault Privacy 🔒
 
-A revolutionary decentralized platform for trading tokenized gold with **Fully Homomorphic Encryption (FHE)** technology, ensuring complete privacy of transaction amounts and portfolio values.
+> **The Future of Private Gold Trading is Here**
 
-## 🔐 Privacy-First Gold Trading
+A cutting-edge decentralized platform that revolutionizes gold trading through **Fully Homomorphic Encryption (FHE)** technology. Trade tokenized gold with complete privacy - your transaction amounts, portfolio values, and trading history remain encrypted and private.
 
-Aurum Trade leverages cutting-edge FHE technology to enable private gold trading where:
-- **Transaction amounts are encrypted** - Only you know how much gold you're trading
-- **Portfolio values remain private** - Your total holdings are never exposed
-- **Zero-knowledge trading** - Trade with complete anonymity
-- **Regulatory compliance** - Maintain privacy while meeting compliance requirements
+## 🚀 Why Gold Vault Privacy?
 
-## ✨ Key Features
+Traditional gold trading platforms expose your financial data. We believe your wealth should remain private.
 
-### 🛡️ FHE-Encrypted Trading
-- All gold amounts and prices are encrypted using Zama's FHE technology
-- Private order matching and execution
-- Encrypted portfolio management
-- Zero-knowledge proof verification
+### 🔐 Complete Privacy
+- **Encrypted Transactions**: All amounts encrypted using FHE
+- **Private Portfolios**: Your holdings never exposed
+- **Anonymous Trading**: Zero-knowledge proof verification
+- **Secure Storage**: Military-grade encryption for all data
 
-### 💰 Gold Tokenization
-- Real gold-backed tokens (1 token = 1 gram of gold)
-- Secure vault storage with insurance
-- Real-time gold price oracles
-- Transparent audit trails
+### 💎 Real Gold Backing
+- **1:1 Gold Ratio**: Every token backed by real gold
+- **Insured Vaults**: Physical gold stored in secure facilities
+- **Real-time Pricing**: Live gold price oracles
+- **Transparent Audits**: Regular third-party verification
 
-### 🔗 Multi-Wallet Support
-- **RainbowKit** integration with latest versions
-- Support for MetaMask, WalletConnect, Coinbase Wallet
-- Hardware wallet compatibility
-- Mobile wallet support
+## 🎯 Core Features
 
-### 📊 Advanced Trading Features
-- Limit orders with encrypted amounts
-- Portfolio analytics (encrypted)
-- Reputation system
-- Trade history (privacy-preserving)
+### 🔒 FHE-Powered Privacy
+```
+┌─────────────────────────────────────┐
+│  Your Data → FHE Encryption → Chain │
+│  Only you can decrypt your amounts  │
+└─────────────────────────────────────┘
+```
 
-## 🚀 Quick Start
+- **Zama FHE Integration**: Industry-leading homomorphic encryption
+- **Private Order Matching**: Encrypted trade execution
+- **Zero-Knowledge Proofs**: Verify without revealing data
+- **Encrypted State Management**: All sensitive data protected
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- MetaMask or compatible wallet
-- Sepolia testnet ETH
+### 🏦 Multi-Wallet Ecosystem
+- **RainbowKit 2.2.8**: Latest wallet connection technology
+- **100+ Wallet Support**: MetaMask, WalletConnect, Coinbase, and more
+- **Hardware Security**: Ledger, Trezor compatibility
+- **Mobile Ready**: iOS and Android wallet support
 
-### Installation
+### 📈 Advanced Trading Engine
+- **Encrypted Limit Orders**: Private order placement
+- **Real-time Matching**: Instant trade execution
+- **Portfolio Analytics**: Encrypted performance tracking
+- **Reputation System**: Privacy-preserving user ratings
 
-1. **Clone the repository**
+## ⚡ Get Started in 5 Minutes
+
+### 🛠️ Prerequisites
+- **Node.js 18+** (Latest LTS recommended)
+- **MetaMask** or compatible Web3 wallet
+- **Sepolia ETH** for testing (get from [faucet](https://sepoliafaucet.com/))
+
+### 🚀 Installation
+
 ```bash
+# 1. Clone the repository
 git clone https://github.com/QuantumLedger312/gold-vault-privacy.git
 cd gold-vault-privacy
-```
 
-2. **Install dependencies**
-```bash
+# 2. Install dependencies
 npm install
-```
 
-3. **Configure environment variables**
-```bash
+# 3. Configure environment
 cp env.example .env.local
-# Edit .env.local with your configuration
-```
+# Edit .env.local with your settings
 
-4. **Start development server**
-```bash
+# 4. Start development server
 npm run dev
+
+# 5. Open http://localhost:8080
 ```
 
-5. **Open your browser**
-Navigate to `http://localhost:8080`
+### 🔧 Environment Setup
+
+```bash
+# Required Environment Variables
+VITE_CHAIN_ID=11155111                    # Sepolia Testnet
+VITE_RPC_URL=https://sepolia.infura.io/... # Your RPC endpoint
+VITE_WALLET_CONNECT_PROJECT_ID=your_id    # WalletConnect project ID
+VITE_GOLD_VAULT_CONTRACT=0x...            # Contract address (after deployment)
+```
 
 ## 🔧 Configuration
 
