@@ -1,18 +1,12 @@
-# Gold Vault Privacy 🔒
+# Gold Vault 💰
 
-> **The Future of Private Gold Trading is Here**
+> **Trade Tokenized Gold on the Blockchain**
 
-A cutting-edge decentralized platform that revolutionizes gold trading through **Fully Homomorphic Encryption (FHE)** technology. Trade tokenized gold with complete privacy - your transaction amounts, portfolio values, and trading history remain encrypted and private.
+A modern decentralized platform for trading tokenized gold with transparent, secure transactions. Buy, sell, and trade gold-backed tokens with real-time pricing and instant settlement.
 
-## 🚀 Why Gold Vault Privacy?
+## 🚀 Why Gold Vault?
 
-Traditional gold trading platforms expose your financial data. We believe your wealth should remain private.
-
-### 🔐 Complete Privacy
-- **Encrypted Transactions**: All amounts encrypted using FHE
-- **Private Portfolios**: Your holdings never exposed
-- **Anonymous Trading**: Zero-knowledge proof verification
-- **Secure Storage**: Military-grade encryption for all data
+Traditional gold trading is limited by location, time zones, and intermediaries. We bring gold trading to the blockchain.
 
 ### 💎 Real Gold Backing
 - **1:1 Gold Ratio**: Every token backed by real gold
@@ -20,32 +14,31 @@ Traditional gold trading platforms expose your financial data. We believe your w
 - **Real-time Pricing**: Live gold price oracles
 - **Transparent Audits**: Regular third-party verification
 
+### 🔗 Blockchain Benefits
+- **24/7 Trading**: Trade gold anytime, anywhere
+- **Instant Settlement**: No waiting for bank transfers
+- **Global Access**: Trade from any location
+- **Transparent Transactions**: All trades recorded on-chain
+
 ## 🎯 Core Features
 
-### 🔒 FHE-Powered Privacy
-```
-┌─────────────────────────────────────┐
-│  Your Data → FHE Encryption → Chain │
-│  Only you can decrypt your amounts  │
-└─────────────────────────────────────┘
-```
-
-- **Zama FHE Integration**: Industry-leading homomorphic encryption
-- **Private Order Matching**: Encrypted trade execution
-- **Zero-Knowledge Proofs**: Verify without revealing data
-- **Encrypted State Management**: All sensitive data protected
-
-### 🏦 Multi-Wallet Ecosystem
+### 🏦 Multi-Wallet Support
 - **RainbowKit 2.2.8**: Latest wallet connection technology
 - **100+ Wallet Support**: MetaMask, WalletConnect, Coinbase, and more
 - **Hardware Security**: Ledger, Trezor compatibility
 - **Mobile Ready**: iOS and Android wallet support
 
-### 📈 Advanced Trading Engine
-- **Encrypted Limit Orders**: Private order placement
+### 📈 Trading Engine
+- **Limit Orders**: Set buy/sell orders at your desired price
 - **Real-time Matching**: Instant trade execution
-- **Portfolio Analytics**: Encrypted performance tracking
-- **Reputation System**: Privacy-preserving user ratings
+- **Portfolio Analytics**: Track your gold holdings and performance
+- **Market Data**: Live gold prices and market information
+
+### 🔐 Security Features
+- **Smart Contracts**: Secure, audited smart contract infrastructure
+- **Multi-sig Support**: Enhanced security for large transactions
+- **Audit Trail**: Immutable transaction records
+- **Insurance**: Vault insurance for physical gold storage
 
 ## ⚡ Get Started in 5 Minutes
 

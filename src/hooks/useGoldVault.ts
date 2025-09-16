@@ -35,20 +35,20 @@ export const useGoldVault = () => {
     chainId: sepolia.id,
   });
 
-  // Deposit gold with FHE encryption
-  const depositGold = async (amount: string, encryptedData: string, proof: string) => {
+  // Deposit gold
+  const depositGold = async (amount: string) => {
     if (!address) throw new Error('Wallet not connected');
     
     try {
       // Convert amount to wei
       const amountWei = parseEther(amount);
       
-      // Call contract with encrypted data
+      // Call contract
       await writeContract({
         address: contractAddress,
         abi: GOLD_VAULT_ABI,
         functionName: 'depositGold',
-        args: [encryptedData, proof],
+        args: [amountWei],
         value: amountWei,
         chainId: sepolia.id,
       });
@@ -61,16 +61,18 @@ export const useGoldVault = () => {
     }
   };
 
-  // Withdraw gold with FHE encryption
-  const withdrawGold = async (amount: string, encryptedData: string, proof: string) => {
+  // Withdraw gold
+  const withdrawGold = async (amount: string) => {
     if (!address) throw new Error('Wallet not connected');
     
     try {
+      const amountWei = parseEther(amount);
+      
       await writeContract({
         address: contractAddress,
         abi: GOLD_VAULT_ABI,
         functionName: 'withdrawGold',
-        args: [encryptedData, proof],
+        args: [amountWei],
         chainId: sepolia.id,
       });
       
@@ -82,16 +84,18 @@ export const useGoldVault = () => {
     }
   };
 
-  // Create gold token with FHE encryption
-  const createGoldToken = async (goldAmount: string, encryptedData: string, proof: string) => {
+  // Create gold token
+  const createGoldToken = async (goldAmount: string) => {
     if (!address) throw new Error('Wallet not connected');
     
     try {
+      const amountWei = parseEther(goldAmount);
+      
       await writeContract({
         address: contractAddress,
         abi: GOLD_VAULT_ABI,
         functionName: 'createGoldToken',
-        args: [encryptedData, proof],
+        args: [amountWei],
         chainId: sepolia.id,
       });
     } catch (err) {
@@ -100,24 +104,25 @@ export const useGoldVault = () => {
     }
   };
 
-  // Create trade order with FHE encryption
+  // Create trade order
   const createTradeOrder = async (
     tokenId: number,
     amount: string,
     price: string,
     isBuyOrder: boolean,
-    duration: number,
-    encryptedData: string,
-    proof: string
+    duration: number
   ) => {
     if (!address) throw new Error('Wallet not connected');
     
     try {
+      const amountWei = parseEther(amount);
+      const priceWei = parseEther(price);
+      
       await writeContract({
         address: contractAddress,
         abi: GOLD_VAULT_ABI,
         functionName: 'createTradeOrder',
-        args: [tokenId, encryptedData, proof, isBuyOrder, duration],
+        args: [tokenId, amountWei, priceWei, isBuyOrder, duration],
         chainId: sepolia.id,
       });
     } catch (err) {
@@ -126,7 +131,7 @@ export const useGoldVault = () => {
     }
   };
 
-  // Execute trade with FHE verification
+  // Execute trade
   const executeTrade = async (orderId: number, matchingOrderId: number) => {
     if (!address) throw new Error('Wallet not connected');
     

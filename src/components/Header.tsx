@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { TrendingUp, Lock } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 const Header = () => {
   return (
@@ -10,7 +10,7 @@ const Header = () => {
             <TrendingUp className="w-5 h-5 text-background" />
           </div>
           <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            Gold Vault Privacy
+            Gold Vault
           </span>
         </div>
         
@@ -21,16 +21,12 @@ const Header = () => {
           <a href="/portfolio" className="text-foreground/80 hover:text-gold-primary transition-colors">
             Portfolio
           </a>
-          <a href="/privacy" className="text-foreground/80 hover:text-gold-primary transition-colors">
-            Privacy
+          <a href="/about" className="text-foreground/80 hover:text-gold-primary transition-colors">
+            About
           </a>
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
-            <Lock className="w-4 h-4 text-gold-primary" />
-            <span>FHE Encrypted</span>
-          </div>
           <ConnectButton />
         </div>
       </div>

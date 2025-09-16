@@ -5,18 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { useGoldVault } from '@/hooks/useGoldVault';
-import { encryptAmount, encryptTradeData } from '@/lib/fhe';
-import { Lock, TrendingUp, Shield, Eye, EyeOff } from 'lucide-react';
+import { TrendingUp, Wallet, Coins } from 'lucide-react';
 import { toast } from 'sonner';
 
-export const PrivateTrading = () => {
+export const GoldTrading = () => {
   const [amount, setAmount] = useState('');
   const [price, setPrice] = useState('');
   const [tokenId, setTokenId] = useState('');
-  const [isEncrypted, setIsEncrypted] = useState(true);
-  const [showEncryptedData, setShowEncryptedData] = useState(false);
-  const [encryptedData, setEncryptedData] = useState<string>('');
-  const [proof, setProof] = useState<string>('');
 
   const {
     balance,
@@ -31,32 +26,15 @@ export const PrivateTrading = () => {
     address,
   } = useGoldVault();
 
-  const handleEncryptData = async () => {
+  const handleDeposit = async () => {
     if (!amount) {
       toast.error('Please enter an amount');
       return;
     }
 
     try {
-      const { encryptedData: encData, proof: proofData } = await encryptAmount(amount);
-      setEncryptedData(encData);
-      setProof(proofData);
-      toast.success('Data encrypted successfully');
-    } catch (err) {
-      toast.error('Encryption failed');
-      console.error(err);
-    }
-  };
-
-  const handleDeposit = async () => {
-    if (!amount || !encryptedData || !proof) {
-      toast.error('Please encrypt data first');
-      return;
-    }
-
-    try {
-      await depositGold(amount, encryptedData, proof);
-      toast.success('Gold deposited with FHE encryption');
+      await depositGold(amount);
+      toast.success('Gold deposited successfully');
     } catch (err) {
       toast.error('Deposit failed');
       console.error(err);
@@ -64,14 +42,14 @@ export const PrivateTrading = () => {
   };
 
   const handleWithdraw = async () => {
-    if (!amount || !encryptedData || !proof) {
-      toast.error('Please encrypt data first');
+    if (!amount) {
+      toast.error('Please enter an amount');
       return;
     }
 
     try {
-      await withdrawGold(amount, encryptedData, proof);
-      toast.success('Gold withdrawn with FHE encryption');
+      await withdrawGold(amount);
+      toast.success('Gold withdrawn successfully');
     } catch (err) {
       toast.error('Withdrawal failed');
       console.error(err);
@@ -79,14 +57,14 @@ export const PrivateTrading = () => {
   };
 
   const handleCreateToken = async () => {
-    if (!amount || !encryptedData || !proof) {
-      toast.error('Please encrypt data first');
+    if (!amount) {
+      toast.error('Please enter an amount');
       return;
     }
 
     try {
-      await createGoldToken(amount, encryptedData, proof);
-      toast.success('Gold token created with FHE encryption');
+      await createGoldToken(amount);
+      toast.success('Gold token created successfully');
     } catch (err) {
       toast.error('Token creation failed');
       console.error(err);
@@ -94,28 +72,20 @@ export const PrivateTrading = () => {
   };
 
   const handleCreateOrder = async () => {
-    if (!amount || !price || !tokenId || !encryptedData || !proof) {
-      toast.error('Please fill all fields and encrypt data');
+    if (!amount || !price || !tokenId) {
+      toast.error('Please fill all fields');
       return;
     }
 
     try {
-      const { encryptedData: tradeEncData, proof: tradeProof } = await encryptTradeData(
-        amount,
-        price,
-        parseInt(tokenId)
-      );
-      
       await createTradeOrder(
         parseInt(tokenId),
         amount,
         price,
         true, // isBuyOrder
-        3600, // 1 hour duration
-        tradeEncData,
-        tradeProof
+        3600 // 1 hour duration
       );
-      toast.success('Private trade order created');
+      toast.success('Trade order created successfully');
     } catch (err) {
       toast.error('Order creation failed');
       console.error(err);
@@ -127,18 +97,18 @@ export const PrivateTrading = () => {
       <Card className="w-full max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Lock className="w-5 h-5" />
-            Private Trading
+            <Wallet className="w-5 h-5" />
+            Gold Trading
           </CardTitle>
           <CardDescription>
-            Connect your wallet to access FHE-encrypted gold trading
+            Connect your wallet to start trading gold tokens
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <Shield className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+            <TrendingUp className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
             <p className="text-muted-foreground">
-              Your wallet connection is required to access private trading features
+              Connect your wallet to access gold trading features
             </p>
           </div>
         </CardContent>
@@ -153,42 +123,42 @@ export const PrivateTrading = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="w-5 h-5" />
-            Private Portfolio
+            Portfolio Overview
           </CardTitle>
           <CardDescription>
-            Your encrypted gold holdings and trading data
+            Your gold holdings and trading information
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-bold text-gold-primary">
-                {isEncrypted ? '***.**' : balance}
+                {balance} ETH
               </div>
               <div className="text-sm text-muted-foreground">Gold Balance</div>
               <Badge variant="secondary" className="mt-1">
-                <Lock className="w-3 h-3 mr-1" />
-                FHE Encrypted
+                <Coins className="w-3 h-3 mr-1" />
+                Tokenized Gold
               </Badge>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gold-primary">
-                {isEncrypted ? '***.**' : goldPrice}
+                {goldPrice} ETH
               </div>
-              <div className="text-sm text-muted-foreground">Gold Price (ETH)</div>
+              <div className="text-sm text-muted-foreground">Gold Price</div>
               <Badge variant="secondary" className="mt-1">
-                <Shield className="w-3 h-3 mr-1" />
-                Private
+                <TrendingUp className="w-3 h-3 mr-1" />
+                Live Price
               </Badge>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gold-primary">
-                {isEncrypted ? '***' : '0'}
+                0
               </div>
               <div className="text-sm text-muted-foreground">Active Orders</div>
               <Badge variant="secondary" className="mt-1">
-                <Eye className="w-3 h-3 mr-1" />
-                Hidden
+                <Wallet className="w-3 h-3 mr-1" />
+                Trading
               </Badge>
             </div>
           </div>
@@ -198,9 +168,9 @@ export const PrivateTrading = () => {
       {/* Trading Interface */}
       <Card>
         <CardHeader>
-          <CardTitle>FHE-Encrypted Trading</CardTitle>
+          <CardTitle>Gold Trading</CardTitle>
           <CardDescription>
-            Trade gold with complete privacy using Fully Homomorphic Encryption
+            Trade gold tokens on the blockchain
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -224,20 +194,11 @@ export const PrivateTrading = () => {
                   />
                 </div>
                 <Button
-                  onClick={handleEncryptData}
+                  onClick={handleDeposit}
                   disabled={!amount || isPending}
                   className="w-full"
                 >
-                  <Lock className="w-4 h-4 mr-2" />
-                  Encrypt Data with FHE
-                </Button>
-                <Button
-                  onClick={handleDeposit}
-                  disabled={!encryptedData || isPending}
-                  className="w-full"
-                  variant="default"
-                >
-                  {isPending ? 'Processing...' : 'Deposit Gold (Encrypted)'}
+                  {isPending ? 'Processing...' : 'Deposit Gold'}
                 </Button>
               </div>
             </TabsContent>
@@ -254,20 +215,12 @@ export const PrivateTrading = () => {
                   />
                 </div>
                 <Button
-                  onClick={handleEncryptData}
-                  disabled={!amount || isPending}
-                  className="w-full"
-                >
-                  <Lock className="w-4 h-4 mr-2" />
-                  Encrypt Data with FHE
-                </Button>
-                <Button
                   onClick={handleWithdraw}
-                  disabled={!encryptedData || isPending}
+                  disabled={!amount || isPending}
                   className="w-full"
                   variant="destructive"
                 >
-                  {isPending ? 'Processing...' : 'Withdraw Gold (Encrypted)'}
+                  {isPending ? 'Processing...' : 'Withdraw Gold'}
                 </Button>
               </div>
             </TabsContent>
@@ -284,20 +237,12 @@ export const PrivateTrading = () => {
                   />
                 </div>
                 <Button
-                  onClick={handleEncryptData}
-                  disabled={!amount || isPending}
-                  className="w-full"
-                >
-                  <Lock className="w-4 h-4 mr-2" />
-                  Encrypt Data with FHE
-                </Button>
-                <Button
                   onClick={handleCreateToken}
-                  disabled={!encryptedData || isPending}
+                  disabled={!amount || isPending}
                   className="w-full"
                   variant="secondary"
                 >
-                  {isPending ? 'Processing...' : 'Create Gold Token (Encrypted)'}
+                  {isPending ? 'Processing...' : 'Create Gold Token'}
                 </Button>
               </div>
             </TabsContent>
@@ -339,51 +284,13 @@ export const PrivateTrading = () => {
                   className="w-full"
                   variant="outline"
                 >
-                  {isPending ? 'Processing...' : 'Create Private Trade Order'}
+                  {isPending ? 'Processing...' : 'Create Trade Order'}
                 </Button>
               </div>
             </TabsContent>
           </Tabs>
         </CardContent>
       </Card>
-
-      {/* Encrypted Data Display */}
-      {encryptedData && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Shield className="w-5 h-5" />
-              Encrypted Data
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowEncryptedData(!showEncryptedData)}
-              >
-                {showEncryptedData ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </Button>
-            </CardTitle>
-            <CardDescription>
-              Your data is encrypted using FHE and stored privately on-chain
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              <div>
-                <label className="text-sm font-medium">Encrypted Data:</label>
-                <div className="p-3 bg-muted rounded-md font-mono text-xs break-all">
-                  {showEncryptedData ? encryptedData : '••••••••••••••••••••••••••••••••'}
-                </div>
-              </div>
-              <div>
-                <label className="text-sm font-medium">Zero-Knowledge Proof:</label>
-                <div className="p-3 bg-muted rounded-md font-mono text-xs break-all">
-                  {showEncryptedData ? proof : '••••••••••••••••••••••••••••••••'}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* Error Display */}
       {error && (
