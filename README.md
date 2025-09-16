@@ -1,73 +1,243 @@
-# Welcome to your Lovable project
+# Aurum Trade - FHE-Encrypted Gold Trading Platform
 
-## Project info
+A revolutionary decentralized platform for trading tokenized gold with **Fully Homomorphic Encryption (FHE)** technology, ensuring complete privacy of transaction amounts and portfolio values.
 
-**URL**: https://lovable.dev/projects/8226a616-bf04-4b27-86e4-f6b3beb479d3
+## 🔐 Privacy-First Gold Trading
 
-## How can I edit this code?
+Aurum Trade leverages cutting-edge FHE technology to enable private gold trading where:
+- **Transaction amounts are encrypted** - Only you know how much gold you're trading
+- **Portfolio values remain private** - Your total holdings are never exposed
+- **Zero-knowledge trading** - Trade with complete anonymity
+- **Regulatory compliance** - Maintain privacy while meeting compliance requirements
 
-There are several ways of editing your application.
+## ✨ Key Features
 
-**Use Lovable**
+### 🛡️ FHE-Encrypted Trading
+- All gold amounts and prices are encrypted using Zama's FHE technology
+- Private order matching and execution
+- Encrypted portfolio management
+- Zero-knowledge proof verification
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8226a616-bf04-4b27-86e4-f6b3beb479d3) and start prompting.
+### 💰 Gold Tokenization
+- Real gold-backed tokens (1 token = 1 gram of gold)
+- Secure vault storage with insurance
+- Real-time gold price oracles
+- Transparent audit trails
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔗 Multi-Wallet Support
+- **RainbowKit** integration with latest versions
+- Support for MetaMask, WalletConnect, Coinbase Wallet
+- Hardware wallet compatibility
+- Mobile wallet support
 
-**Use your preferred IDE**
+### 📊 Advanced Trading Features
+- Limit orders with encrypted amounts
+- Portfolio analytics (encrypted)
+- Reputation system
+- Trade history (privacy-preserving)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Quick Start
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- MetaMask or compatible wallet
+- Sepolia testnet ETH
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. **Clone the repository**
+```bash
+git clone https://github.com/QuantumLedger312/gold-vault-privacy.git
+cd gold-vault-privacy
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. **Install dependencies**
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. **Configure environment variables**
+```bash
+cp env.example .env.local
+# Edit .env.local with your configuration
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. **Start development server**
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+5. **Open your browser**
+Navigate to `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔧 Configuration
 
-**Use GitHub Codespaces**
+### Environment Variables
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+# Chain Configuration
+VITE_CHAIN_ID=11155111
+VITE_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_KEY
 
-## What technologies are used for this project?
+# Wallet Connect
+VITE_WALLET_CONNECT_PROJECT_ID=your_project_id
 
-This project is built with:
+# Contract Addresses (after deployment)
+VITE_GOLD_VAULT_CONTRACT=0x...
+VITE_FHE_TOKEN_CONTRACT=0x...
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# FHE Configuration
+VITE_FHE_NETWORK_URL=https://api.zama.ai
+VITE_FHE_APP_ID=your_fhe_app_id
+```
 
-## How can I deploy this project?
+### Network Configuration
 
-Simply open [Lovable](https://lovable.dev/projects/8226a616-bf04-4b27-86e4-f6b3beb479d3) and click on Share -> Publish.
+Currently configured for **Sepolia Testnet**:
+- Chain ID: 11155111
+- RPC: https://sepolia.infura.io/v3/b18fb7e6ca7045ac83c41157ab93f990
+- Wallet Connect Project ID: 2ec9743d0d0cd7fb94dee1a7e6d33475
 
-## Can I connect a custom domain to my Lovable project?
+## 🏗️ Smart Contract Architecture
 
-Yes, you can!
+### GoldVault.sol
+The main smart contract implementing FHE-encrypted gold trading:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```solidity
+// Key functions
+function createGoldToken(externalEuint32 goldAmount, bytes calldata inputProof)
+function createTradeOrder(uint256 tokenId, externalEuint32 amount, externalEuint32 price, bool isBuyOrder)
+function executeTrade(uint256 orderId, uint256 matchingOrderId)
+function depositGold(externalEuint32 amount, bytes calldata inputProof)
+function withdrawGold(externalEuint32 amount, bytes calldata inputProof)
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### FHE Integration
+- Uses Zama's FHE library for encryption
+- External encrypted inputs for privacy
+- Zero-knowledge proof verification
+- Encrypted state management
+
+## 🎨 UI/UX Features
+
+- **Modern Design**: Clean, professional interface
+- **Dark/Light Mode**: Automatic theme switching
+- **Responsive**: Mobile-first design
+- **Accessibility**: WCAG 2.1 compliant
+- **Performance**: Optimized for speed
+
+## 🔒 Security Features
+
+- **FHE Encryption**: All sensitive data encrypted
+- **Multi-sig Support**: Enhanced security for large trades
+- **Audit Trail**: Immutable transaction records
+- **Insurance**: Vault insurance for physical gold
+- **Compliance**: Built-in regulatory compliance tools
+
+## 📱 Supported Wallets
+
+- MetaMask
+- WalletConnect
+- Coinbase Wallet
+- Rainbow Wallet
+- Trust Wallet
+- And 100+ more via WalletConnect
+
+## 🌐 Deployment
+
+### Vercel Deployment
+
+1. **Connect to Vercel**
+   - Import project from GitHub
+   - Configure environment variables
+   - Deploy automatically
+
+2. **Environment Setup**
+   ```bash
+   VITE_CHAIN_ID=11155111
+   VITE_RPC_URL=https://sepolia.infura.io/v3/YOUR_KEY
+   VITE_WALLET_CONNECT_PROJECT_ID=your_project_id
+   ```
+
+3. **Custom Domain** (Optional)
+   - Add your domain in Vercel dashboard
+   - Configure DNS settings
+   - Enable SSL automatically
+
+### Manual Deployment
+
+```bash
+npm run build
+# Deploy dist/ folder to your hosting provider
+```
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# E2E tests
+npm run test:e2e
+```
+
+## 📈 Roadmap
+
+### Phase 1 (Current)
+- ✅ FHE-encrypted gold trading
+- ✅ Multi-wallet integration
+- ✅ Basic portfolio management
+- ✅ Sepolia testnet deployment
+
+### Phase 2 (Q2 2024)
+- 🔄 Mainnet deployment
+- 🔄 Advanced order types
+- 🔄 Cross-chain support
+- 🔄 Mobile app
+
+### Phase 3 (Q3 2024)
+- 📋 Institutional features
+- 📋 Advanced analytics
+- 📋 API for third-party integration
+- 📋 Governance token
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Documentation**: [docs.aurumtrade.com](https://docs.aurumtrade.com)
+- **Discord**: [discord.gg/aurumtrade](https://discord.gg/aurumtrade)
+- **Twitter**: [@AurumTrade](https://twitter.com/aurumtrade)
+- **Email**: support@aurumtrade.com
+
+## 🙏 Acknowledgments
+
+- **Zama** for FHE technology
+- **RainbowKit** for wallet integration
+- **Vite** for build tooling
+- **Tailwind CSS** for styling
+- **React** for the UI framework
+
+---
+
+**Built with ❤️ for privacy-first gold trading**
+
+*Trade gold privately. Trade gold securely. Trade gold with Aurum Trade.*
