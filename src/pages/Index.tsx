@@ -5,7 +5,7 @@ import { TrendingUp, Coins, Shield } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-gold-50/20">
       <Header />
       <main className="container mx-auto px-4 py-8 space-y-8">
         {/* Hero Section */}
